@@ -130,8 +130,8 @@ end)
 RegisterNetEvent('qb-vehicleshop:server:financePayment', function(paymentAmount, vehData)
     local src = source
     local player = QBCore.Functions.GetPlayer(src)
-    local cash = player.PlayerData.money['cash']
-    local bank = player.PlayerData.money['bank']
+    local cash = player.Functions.GetMoney('cash')
+    local bank = player.Functions.GetMoney('bank')
     local plate = vehData.vehiclePlate
     paymentAmount = tonumber(paymentAmount)
     local minPayment = tonumber(vehData.paymentAmount)
@@ -161,8 +161,8 @@ end)
 RegisterNetEvent('qb-vehicleshop:server:financePaymentFull', function(data)
     local src = source
     local player = QBCore.Functions.GetPlayer(src)
-    local cash = player.PlayerData.money['cash']
-    local bank = player.PlayerData.money['bank']
+    local cash = player.Functions.GetMoney('cash')
+    local bank = player.Functions.GetMoney('bank')
     local vehBalance = data.vehBalance
     local vehPlate = data.vehPlate
     if player and vehBalance ~= 0 then
@@ -186,8 +186,8 @@ RegisterNetEvent('qb-vehicleshop:server:buyShowroomVehicle', function(vehicle)
     vehicle = vehicle.buyVehicle
     local pData = QBCore.Functions.GetPlayer(src)
     local cid = pData.PlayerData.citizenid
-    local cash = pData.PlayerData.money['cash']
-    local bank = pData.PlayerData.money['bank']
+    local cash = pData.Functions.GetMoney('cash')
+    local bank = pData.Functions.GetMoney('bank')
     local vehiclePrice = QBCore.Shared.Vehicles[vehicle]['price']
     local plate = GeneratePlate()
     if cash > tonumber(vehiclePrice) then
@@ -230,8 +230,8 @@ RegisterNetEvent('qb-vehicleshop:server:financeVehicle', function(downPayment, p
     paymentAmount = tonumber(paymentAmount)
     local pData = QBCore.Functions.GetPlayer(src)
     local cid = pData.PlayerData.citizenid
-    local cash = pData.PlayerData.money['cash']
-    local bank = pData.PlayerData.money['bank']
+    local cash = pData.Functions.GetMoney('cash')
+    local bank = pData.Functions.GetMoney('bank')
     local vehiclePrice = QBCore.Shared.Vehicles[vehicle]['price']
     local timer = (Config.PaymentInterval * 60)
     local minDown = tonumber(round((Config.MinimumDown / 100) * vehiclePrice))
@@ -294,8 +294,8 @@ RegisterNetEvent('qb-vehicleshop:server:sellShowroomVehicle', function(data, pla
 
     if #(GetEntityCoords(GetPlayerPed(src)) - GetEntityCoords(GetPlayerPed(target.PlayerData.source))) < 3 then
         local cid = target.PlayerData.citizenid
-        local cash = target.PlayerData.money['cash']
-        local bank = target.PlayerData.money['bank']
+        local cash = target.Functions.GetMoney('cash')
+        local bank = target.Functions.GetMoney('bank')
         local vehicle = data
         local vehiclePrice = QBCore.Shared.Vehicles[vehicle]['price']
         local commission = round(vehiclePrice * Config.Commission)
@@ -357,8 +357,8 @@ RegisterNetEvent('qb-vehicleshop:server:sellfinanceVehicle', function(downPaymen
         downPayment = tonumber(downPayment)
         paymentAmount = tonumber(paymentAmount)
         local cid = target.PlayerData.citizenid
-        local cash = target.PlayerData.money['cash']
-        local bank = target.PlayerData.money['bank']
+        local cash = target.Functions.GetMoney('cash')
+        local bank = target.Functions.GetMoney('bank')
         local vehiclePrice = QBCore.Shared.Vehicles[vehicle]['price']
         local timer = (Config.PaymentInterval * 60)
         local minDown = tonumber(round((Config.MinimumDown / 100) * vehiclePrice))
