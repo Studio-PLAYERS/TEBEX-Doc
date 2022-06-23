@@ -68,13 +68,14 @@ end)
 
 CreateThread(function()
 	while true do
-		Wait(250)
-
+		Wait(sleep)
 		local pumpObject, pumpDistance = FindNearestFuelPump()
 
 		if pumpDistance < 2.5 then
 			isNearPump = pumpObject
+			TriggerServerEvent('QBCore:Updatecash')
 			currentCash = QBCore.Functions.GetPlayerData().money['cash']
+			Wait(250)
 		else
 			isNearPump = false
 
