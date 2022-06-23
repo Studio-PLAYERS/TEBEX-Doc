@@ -7,6 +7,7 @@ local todaycost = 0
 local currentCash = 0
 local fuelSynced = false
 local inBlacklisted = false
+local sleep = 250
 
 function ManageFuelUsage(vehicle)
 	if not DecorExistOn(vehicle, Config.FuelDecor) then
@@ -68,13 +69,14 @@ end)
 
 CreateThread(function()
 	while true do
-		Wait(250)
-
+		Wait(sleep)
 		local pumpObject, pumpDistance = FindNearestFuelPump()
 
 		if pumpDistance < 2.5 then
 			isNearPump = pumpObject
+			TriggerServerEvent('QBCore:Updatecash')
 			currentCash = QBCore.Functions.GetPlayerData().money['cash']
+			Wait(sleep)
 		else
 			isNearPump = false
 
@@ -152,9 +154,9 @@ AddEventHandler('fuel:refuelFromPump', function(pumpObject, ped, vehicle)
 
 			DrawText3Ds(stringCoords.x, stringCoords.y, stringCoords.z + 1.2, Config.Strings.CancelFuelingPump .. extraString)
 			DrawText3Ds(vehicleCoords.x, vehicleCoords.y, vehicleCoords.z + 0.5, Round(currentFuel, 1) .. "%")
-			DrawText3Ds(vehicleCoords.x, vehicleCoords.y, vehicleCoords.z + 1.3, Round(currentCost, 1) ..   '~b~$~w~   cost')
+			DrawText3Ds(vehicleCoords.x, vehicleCoords.y, vehicleCoords.z + 1.3, Round(currentCost, 1) ..   '~b~$~w~   cena')
 		else
-			DrawText3Ds(vehicleCoords.x, vehicleCoords.y, vehicleCoords.z + 0.5, Config.Strings.CancelFuelingJerryCan .. "\nGas can: ~g~" .. Round(GetAmmoInPedWeapon(ped, 883325847) / 4500 * 100, 1) .. "% | Vehicle: " .. Round(currentFuel, 1) .. "%")
+			DrawText3Ds(vehicleCoords.x, vehicleCoords.y, vehicleCoords.z + 0.5, Config.Strings.CancelFuelingJerryCan .. "\nNádrž: ~g~" .. Round(GetAmmoInPedWeapon(ped, 883325847) / 4500 * 100, 1) .. "% | Vozidlo: " .. Round(currentFuel, 1) .. "%")
 		end
 
 		if not IsEntityPlayingAnim(ped, "timetable@gardener@filling_can", "gar_ig_5_filling_can", 3) then
@@ -252,11 +254,11 @@ CreateThread(function()
 						DrawText3Ds(stringCoords.x, stringCoords.y, stringCoords.z + 1.2, Config.Strings.NotEnoughCash)
 					end
 				else
-					Wait(250)
+					Wait(sleep)
 				end
 			end
 		else
-			Wait(250)
+			Wait(sleep)
 		end
 
 		Wait(0)
