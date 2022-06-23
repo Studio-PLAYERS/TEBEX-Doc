@@ -272,8 +272,14 @@ function QBCore.Player.CreatePlayer(PlayerData, Offline)
         moneytype = moneytype:lower()
         amount = tonumber(amount)
         if amount < 0 then return end
+        if moneytype == 'cash' then
+            TriggerEvent('QBCore:Server:AddMoney', PlayerData, amount, reason)
+        end
         if not self.PlayerData.money[moneytype] then return false end
-        self.PlayerData.money[moneytype] = self.PlayerData.money[moneytype] + amount
+        if self.PlayerData.money[moneytype] == self.PlayerData.money['bank'] then
+            self.PlayerData.money[moneytype] = self.PlayerData.money['bank'] + amount
+        end
+        -- self.PlayerData.money[moneytype] = self.PlayerData.money[moneytype] + amount
 
         if not self.Offline then
             self.Functions.UpdatePlayerData()
@@ -293,6 +299,9 @@ function QBCore.Player.CreatePlayer(PlayerData, Offline)
         moneytype = moneytype:lower()
         amount = tonumber(amount)
         if amount < 0 then return end
+        if moneytype == 'cash' then
+            TriggerEvent('QBCore:Server:RemoveMoney', PlayerData, amount, reason)
+        end
         if not self.PlayerData.money[moneytype] then return false end
         for _, mtype in pairs(QBCore.Config.Money.DontAllowMinus) do
             if mtype == moneytype then
@@ -301,7 +310,10 @@ function QBCore.Player.CreatePlayer(PlayerData, Offline)
                 end
             end
         end
-        self.PlayerData.money[moneytype] = self.PlayerData.money[moneytype] - amount
+        if self.PlayerData.money[moneytype] == self.PlayerData.money['bank'] then
+            self.PlayerData.money[moneytype] = self.PlayerData.money['bank'] - amount
+        end
+        --self.PlayerData.money[moneytype] = self.PlayerData.money[moneytype] - amount
 
         if not self.Offline then
             self.Functions.UpdatePlayerData()
@@ -336,6 +348,8 @@ function QBCore.Player.CreatePlayer(PlayerData, Offline)
     end
 
     function self.Functions.GetMoney(moneytype)
+        local src = PlayerData.source
+        TriggerEvent('QBCore:Server:UpdateCore', src)
         if not moneytype then return false end
         moneytype = moneytype:lower()
         return self.PlayerData.money[moneytype]
