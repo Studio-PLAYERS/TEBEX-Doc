@@ -272,12 +272,21 @@ function QBCore.Player.CreatePlayer(PlayerData, Offline)
         moneytype = moneytype:lower()
         amount = tonumber(amount)
         if amount < 0 then return end
-        if moneytype == 'cash' then
-            TriggerEvent('QBCore:Server:AddMoney', PlayerData, amount, reason)
-        end
         if not self.PlayerData.money[moneytype] then return false end
-        if self.PlayerData.money[moneytype] == self.PlayerData.money['bank'] then
-            self.PlayerData.money[moneytype] = self.PlayerData.money['bank'] + amount
+	if moneytype == 'cash' then
+            if self.PlayerData.money[moneytype] == self.PlayerData.money['cash'] then
+                TriggerEvent('QBCore:Server:AddMoney', PlayerData, amount, reason)
+            end
+        end
+        if moneytype == 'bank' then
+            if self.PlayerData.money[moneytype] == self.PlayerData.money['bank'] then
+                self.PlayerData.money[moneytype] = self.PlayerData.money['bank'] + amount
+            end
+        end
+        if moneytype == 'crypto' then
+            if self.PlayerData.money[moneytype] == self.PlayerData.money['crypto'] then
+                self.PlayerData.money[moneytype] = self.PlayerData.money['crypto'] + amount
+            end
         end
         -- self.PlayerData.money[moneytype] = self.PlayerData.money[moneytype] + amount
 
@@ -299,9 +308,6 @@ function QBCore.Player.CreatePlayer(PlayerData, Offline)
         moneytype = moneytype:lower()
         amount = tonumber(amount)
         if amount < 0 then return end
-        if moneytype == 'cash' then
-            TriggerEvent('QBCore:Server:RemoveMoney', PlayerData, amount, reason)
-        end
         if not self.PlayerData.money[moneytype] then return false end
         for _, mtype in pairs(QBCore.Config.Money.DontAllowMinus) do
             if mtype == moneytype then
@@ -310,8 +316,20 @@ function QBCore.Player.CreatePlayer(PlayerData, Offline)
                 end
             end
         end
-        if self.PlayerData.money[moneytype] == self.PlayerData.money['bank'] then
-            self.PlayerData.money[moneytype] = self.PlayerData.money['bank'] - amount
+        if moneytype == 'cash' then
+            if self.PlayerData.money[moneytype] == self.PlayerData.money['cash'] then
+                TriggerEvent('QBCore:Server:RemoveMoney', PlayerData, amount, reason)
+            end
+        end
+        if moneytype == 'bank' then
+            if self.PlayerData.money[moneytype] == self.PlayerData.money['bank'] then
+                self.PlayerData.money[moneytype] = self.PlayerData.money['bank'] - amount
+            end
+        end
+        if moneytype == 'crypto' then
+            if self.PlayerData.money[moneytype] == self.PlayerData.money['crypto'] then
+                self.PlayerData.money[moneytype] = self.PlayerData.money['crypto'] - amount
+            end
         end
         --self.PlayerData.money[moneytype] = self.PlayerData.money[moneytype] - amount
 
