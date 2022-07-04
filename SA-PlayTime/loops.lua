@@ -4,6 +4,7 @@ CreateThread(function()
         if LocalPlayer.state.isLoggedIn then
             sleep = (1000 * 60) * QBCore.Config.UpdateInterval
             TriggerServerEvent('QBCore:UpdatePlayer')
+            TriggerServerEvent('PlayTime:Server:Increase')
         end
         Wait(sleep)
     end
