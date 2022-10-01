@@ -606,6 +606,19 @@ function handleDragDrop() {
                     $(".ui-draggable-dragging").find(".item-slot-key").remove();
                     if ($(this).parent().attr("data-inventory") == "hotbar") {
                     }
+                } else if (itemData.name == 'cash') {
+                    $(this).find(".item-slot-amount p").html("0 (0.0)");
+                    $(".ui-draggable-dragging")
+                        .find(".item-slot-amount p")
+                        .html(
+                            itemData.amount +
+                            "$ (" +
+                            ((itemData.weight * itemData.amount) / 1000).toFixed(1) +
+                            ")"
+                        );
+                    $(".ui-draggable-dragging").find(".item-slot-key").remove();
+                    if ($(this).parent().attr("data-inventory") == "hotbar") {
+                    }
                 } else {
                     $(this).find(".item-slot-amount p").html("0 (0.0)");
                     $(".ui-draggable-dragging")
@@ -2396,6 +2409,25 @@ var requiredItemOpen = false;
                                 ")</p></div>" +
                                 ItemLabel
                             );
+                        if (item.name == 'cash') {
+                            $(".player-inventory")
+                            .find("[data-slot=" + item.slot + "]")
+                            .html(
+                                '<div class="item-slot-key"><p>' +
+                                item.slot +
+                                '</p></div><div class="item-slot-img"><img src="images/' +
+                                item.image +
+                                '" alt="' +
+                                item.name +
+                                '" /></div><div class="item-slot-amount"><p>' +
+                                item.amount +
+                                "$ (" +
+                                ((item.weight * item.amount) / 1000).toFixed(1) +
+                                ")</p></div>" +
+                                ItemLabel
+                            );
+                        }
+
                         $(".player-inventory")
                             .find("[data-slot=" + item.slot + "]")
                             .data("item", item);
@@ -2417,6 +2449,24 @@ var requiredItemOpen = false;
                                 ")</p></div>" +
                                 ItemLabel
                             );
+                        if (item.name == 'cash') {
+                            $(".player-inventory")
+                            .find("[data-slot=" + item.slot + "]")
+                            .html(
+                                '<div class="item-slot-key"><p>' +
+                                item.slot +
+                                '</p></div><div class="item-slot-img"><img src="images/' +
+                                item.image +
+                                '" alt="' +
+                                item.name +
+                                '" /></div><div class="item-slot-amount"><p>' +
+                                item.amount +
+                                "$ (" +
+                                ((item.weight * item.amount) / 1000).toFixed(1) +
+                                ")</p></div>" +
+                                ItemLabel
+                            );
+                        }
                         $(".player-inventory")
                             .find("[data-slot=" + item.slot + "]")
                             .data("item", item);
@@ -2438,6 +2488,24 @@ var requiredItemOpen = false;
                                 ")</p></div>" +
                                 ItemLabel
                             );
+                        if (item.name == 'cash') {
+                            $(".player-inventory")
+                            .find("[data-slot=" + item.slot + "]")
+                            .html(
+                                '<div class="item-slot-key"><p>' +
+                                item.slot +
+                                '</p></div><div class="item-slot-img"><img src="images/' +
+                                item.image +
+                                '" alt="' +
+                                item.name +
+                                '" /></div><div class="item-slot-amount"><p>' +
+                                item.amount +
+                                "$ (" +
+                                ((item.weight * item.amount) / 1000).toFixed(1) +
+                                ")</p></div>" +
+                                ItemLabel
+                            );
+                        }
                         $(".player-inventory")
                             .find("[data-slot=" + item.slot + "]")
                             .data("item", item);
@@ -2645,6 +2713,24 @@ var requiredItemOpen = false;
                             item.label +
                             "</p></div>"
                         );
+                    if (item.name == 'cash') {
+                        $(".player-inventory")
+                        .find("[data-slot=" + item.slot + "]")
+                        .html(
+                            '<div class="item-slot-key"><p>' +
+                            item.slot +
+                            '</p></div><div class="item-slot-img"><img src="images/' +
+                            item.image +
+                            '" alt="' +
+                            item.name +
+                            '" /></div><div class="item-slot-amount"><p>' +
+                            item.amount +
+                            "$ (" +
+                            ((item.weight * item.amount) / 1000).toFixed(1) +
+                            ")</p></div>" +
+                            ItemLabel
+                        );
+                    }
                     $(".player-inventory")
                         .find("[data-slot=" + item.slot + "]")
                         .data("item", item);
@@ -2667,6 +2753,24 @@ var requiredItemOpen = false;
                             item.label +
                             "</p></div>"
                         );
+                    if (item.name == 'cash') {
+                        $(".player-inventory")
+                        .find("[data-slot=" + item.slot + "]")
+                        .html(
+                            '<div class="item-slot-key"><p>' +
+                            item.slot +
+                            '</p></div><div class="item-slot-img"><img src="images/' +
+                            item.image +
+                            '" alt="' +
+                            item.name +
+                            '" /></div><div class="item-slot-amount"><p>' +
+                            item.amount +
+                            "$ (" +
+                            ((item.weight * item.amount) / 1000).toFixed(1) +
+                            ")</p></div>" +
+                            ItemLabel
+                        );
+                    }
                     $(".player-inventory")
                         .find("[data-slot=" + item.slot + "]")
                         .data("item", item);
@@ -2689,6 +2793,24 @@ var requiredItemOpen = false;
                             item.label +
                             "</p></div>"
                         );
+                    if (item.name == 'cash') {
+                        $(".player-inventory")
+                        .find("[data-slot=" + item.slot + "]")
+                        .html(
+                            '<div class="item-slot-key"><p>' +
+                            item.slot +
+                            '</p></div><div class="item-slot-img"><img src="images/' +
+                            item.image +
+                            '" alt="' +
+                            item.name +
+                            '" /></div><div class="item-slot-amount"><p>' +
+                            item.amount +
+                            "$ (" +
+                            ((item.weight * item.amount) / 1000).toFixed(1) +
+                            ")</p></div>" +
+                            ItemLabel
+                        );
+                    }
                     $(".player-inventory")
                         .find("[data-slot=" + item.slot + "]")
                         .data("item", item);
