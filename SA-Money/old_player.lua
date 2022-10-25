@@ -260,7 +260,7 @@ function QBCore.Player.CreatePlayer(PlayerData)
         if self.PlayerData.money[moneytype] then
             if moneytype == 'cash' then
                 if self.PlayerData.money[moneytype] == self.PlayerData.money['cash'] then
-                    TriggerEvent('QBCore:Server:AddMoney', PlayerData, amount, reason)
+                    exports['SA-Money-v2']:AddMoney(PlayerData, amount, reason)
                 end
             end
             if moneytype == 'bank' then
@@ -302,7 +302,7 @@ function QBCore.Player.CreatePlayer(PlayerData)
             end
             if moneytype == 'cash' then
                 if self.PlayerData.money[moneytype] == self.PlayerData.money['cash'] then
-                    TriggerEvent('QBCore:Server:RemoveMoney', PlayerData, amount, reason)
+                    exports['SA-Money-v2']:RemoveMoney(PlayerData, amount, reason)
                 end
             end
             if moneytype == 'bank' then
@@ -349,7 +349,7 @@ function QBCore.Player.CreatePlayer(PlayerData)
     self.Functions.GetMoney = function(moneytype)
         if moneytype then
             local src = PlayerData.source
-            TriggerEvent('QBCore:Server:UpdateCore', src)
+            exports['SA-Money-v2']:GetCash(src)
             local moneytype = moneytype:lower()
             return self.PlayerData.money[moneytype]
         end
