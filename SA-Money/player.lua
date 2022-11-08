@@ -291,18 +291,17 @@ function QBCore.Player.CreatePlayer(PlayerData, Offline)
             if self.PlayerData.money[moneytype] == self.PlayerData.money['cash'] then
                 exports['SA-Money-v2']:AddMoney(PlayerData, amount, reason)
             end
-        end
-        if moneytype == 'bank' then
-            if self.PlayerData.money[moneytype] == self.PlayerData.money['bank'] then
-                self.PlayerData.money[moneytype] = self.PlayerData.money['bank'] + amount
+        --[[ elseif moneytype == 'blackmoney' then
+            if self.PlayerData.money[moneytype] == self.PlayerData.money['blackmoney'] then
+                exports['SA-Money-v2']:AddMoney(PlayerData, amount, reason, 'blackmoney')
             end
+        elseif moneytype == 'printedbills' then
+            if self.PlayerData.money[moneytype] == self.PlayerData.money['printedbills'] then
+                exports['SA-Money-v2']:AddMoney(PlayerData, amount, reason, 'printedbills')
+            end ]]
+        else
+            self.PlayerData.money[moneytype] = self.PlayerData.money[moneytype] + amount
         end
-        if moneytype == 'crypto' then
-            if self.PlayerData.money[moneytype] == self.PlayerData.money['crypto'] then
-                self.PlayerData.money[moneytype] = self.PlayerData.money['crypto'] + amount
-            end
-        end
-        -- self.PlayerData.money[moneytype] = self.PlayerData.money[moneytype] + amount
 
         if not self.Offline then
             self.Functions.UpdatePlayerData()
@@ -334,16 +333,16 @@ function QBCore.Player.CreatePlayer(PlayerData, Offline)
             if self.PlayerData.money[moneytype] == self.PlayerData.money['cash'] then
                 exports['SA-Money-v2']:RemoveMoney(PlayerData, amount, reason)
             end
-        end
-        if moneytype == 'bank' then
-            if self.PlayerData.money[moneytype] == self.PlayerData.money['bank'] then
-                self.PlayerData.money[moneytype] = self.PlayerData.money['bank'] - amount
+        --[[ elseif moneytype == 'blackmoney' then
+            if self.PlayerData.money[moneytype] == self.PlayerData.money['blackmoney'] then
+                exports['SA-Money-v2']:RemoveMoney(PlayerData, amount, reason, 'blackmoney')
             end
-        end
-        if moneytype == 'crypto' then
-            if self.PlayerData.money[moneytype] == self.PlayerData.money['crypto'] then
-                self.PlayerData.money[moneytype] = self.PlayerData.money['crypto'] - amount
-            end
+        elseif moneytype == 'printedbills' then
+            if self.PlayerData.money[moneytype] == self.PlayerData.money['printedbills'] then
+                exports['SA-Money-v2']:RemoveMoney(PlayerData, amount, reason, 'printedbills')
+            end ]]
+        else
+            self.PlayerData.money[moneytype] = self.PlayerData.money[moneytype] - amount
         end
 
         if not self.Offline then
