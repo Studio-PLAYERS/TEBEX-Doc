@@ -3,7 +3,8 @@ local Translations = {
         enoughmoney = "You don't have enough money.",
         FullInventory = "Your inventory is full, your money has been deposited into the bank - %{money}$",
         recieved = "You recieved %{money}$",
-        paid = "You've paid %{money}$"
+        paid = "You've paid %{money}$",
+        error = "An error occurred while adding money. Contact the administrator"
     },
     migration = {
         info = 'Cash to bank account migration tool. (God)',

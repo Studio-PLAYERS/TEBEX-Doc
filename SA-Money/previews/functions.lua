@@ -1,3 +1,11 @@
+function AddCustom(src, item, amount, reason)
+    exports['qb-inventory']:AddItem(src, item, amount)
+end
+
+function RemCustom(src, item, amount, reason)
+    exports['qb-inventory']:RemoveItem(src, item, amount, slot)
+end
+
 function SA_Payment(data)
     local src = data.src
     local amount = data.amount
@@ -14,6 +22,9 @@ function SA_Payment(data)
 
         elseif name == 'FullInventory' then
             TriggerClientEvent('QBCore:Notify', src, Lang:t('notifications.FullInventory', {money = amount}), 'success')
+
+        elseif name == 'Error' then
+            TriggerClientEvent('QBCore:Notify', src, Lang:t('notifications.error'), 'error')
 
         end
     end
