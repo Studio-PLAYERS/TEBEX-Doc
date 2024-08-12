@@ -1,12 +1,20 @@
 Config = {
-    VersionCheck = true, --Here is an option to disable the print of versions in the console.
+    Debug = false,            -- It start up debug mode which will print into console if the player passes through conditions (It must be all small true/false)
+    VersionCheck = true,     -- Here is an option to disable the print of versions in the console.
 
-    Everbody = true, --This makes it comfortable for everybody. If is anybody in car and stop in front of traffic lights.
-    AllowedCarsState = true, -- This disable allowed cars | false = disabled
+    Everbody = false,        -- This makes it comfortable for everybody. If is anybody in car and stop in front of traffic lights.
+    Mode = 'stop',           -- Set to (stop/drive)
+    -- 'stop' = green turns out only if player stop the vehicle. 
+    -- 'drive' = green turns out when he drive
+
+    AllowedCarsState = true, -- This disable allowed cars | false = disabled.
+    Siren = true,            -- true = ON, false = OFF
+    -- true = Siren ON > Cars can drive through traffic on green with siren on, otherwise traffic will behave the same.
+    -- false = Siren OFF > Selected cars can drive through traffic on with/without siren on.
 
     Settings = {
-        Duration = 5, --5 = 5 Seconds
-        Range = 60.0, --It has to be 0.0 examples: 10.0 ; 20.0
+        Duration = 5,        -- 5 = 5 Seconds
+        Range = 60.0,        -- It has to be number with dot > examples: 10.0 ; 20.0
     },
 
     ---------------------
