@@ -20,7 +20,7 @@ Config = {
     --------------------------
 
     Framework = 'qb-core',      -- Don't touch this. Change it only if you have renamed qb
-    Inventory = 'qb-inventory',        -- Set it to name of your inventory resource you use, for example qb-inventory (PS,LJ,QB), ox-inventory, codem-inventory
+    Inventory = 'qb-inventory',        -- Set it to name of your inventory resource you use, for example qb-inventory (PS,LJ,QB), ox_inventory, codem-inventory
     -- For custom inventory use 'custom' and change functions in functions.lua
     -----
 
